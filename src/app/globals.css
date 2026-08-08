@@ -1,26 +1,416 @@
 @import "tailwindcss";
 
+/* ============================================================
+   ROOT CSS CUSTOM PROPERTIES — Brand tokens
+   ============================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Colors */
+  --color-brand-blue: #0f3460;
+  --color-brand-teal: #16213e;
+  --color-accent: #e94560;
+  --color-accent-warm: #f5a623;
+  --color-surface: #f0f4f8;
+
+  /* Text */
+  --color-text-primary: #1a1a2e;
+  --color-text-muted: #64748b;
+
+  /* Semantic */
+  --color-success: #10b981;
+  --color-white: #ffffff;
+
+  /* Typography scale */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+  --font-size-7xl: 4.5rem;
+
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-brand: 0 4px 20px 0 rgb(15 52 96 / 0.25);
+  --shadow-accent: 0 4px 20px 0 rgb(233 69 96 / 0.35);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ============================================================
+   TAILWIND v4 THEME — extend with brand tokens
+   ============================================================ */
+@theme {
+  /* --- Colors --- */
+  --color-brand-blue: var(--color-brand-blue);
+  --color-brand-teal: var(--color-brand-teal);
+  --color-accent: var(--color-accent);
+  --color-accent-warm: var(--color-accent-warm);
+  --color-surface: var(--color-surface);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-muted: var(--color-text-muted);
+  --color-success: var(--color-success);
+
+  /* Brand palette shades — used via bg-brand-blue/10 etc. */
+  --color-brand-50: #e8eef7;
+  --color-brand-100: #c5d4e9;
+  --color-brand-200: #9db7d9;
+  --color-brand-300: #7599c9;
+  --color-brand-400: #5882be;
+  --color-brand-500: #3b6bb3;
+  --color-brand-600: #2d5a9e;
+  --color-brand-700: #1f4789;
+  --color-brand-800: #0f3460;
+  --color-brand-900: #0a2347;
+
+  --color-accent-50: #fde8ec;
+  --color-accent-100: #f9c5cd;
+  --color-accent-200: #f59dab;
+  --color-accent-300: #f07589;
+  --color-accent-400: #ed5670;
+  --color-accent-500: #e94560;
+  --color-accent-600: #d43050;
+  --color-accent-700: #bc1f3f;
+  --color-accent-800: #a41230;
+  --color-accent-900: #8c0020;
+
+  --color-warm-50: #fff8ec;
+  --color-warm-100: #fdedc9;
+  --color-warm-200: #fbe0a0;
+  --color-warm-300: #f9d277;
+  --color-warm-400: #f7c44e;
+  --color-warm-500: #f5a623;
+  --color-warm-600: #e0901a;
+  --color-warm-700: #c77a12;
+  --color-warm-800: #ae640a;
+  --color-warm-900: #954e03;
+
+  /* --- Font families (variables set by next/font) --- */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-raleway), var(--font-inter), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  /* --- Font sizes --- */
+  --font-size-xs: var(--font-size-xs);
+  --font-size-sm: var(--font-size-sm);
+  --font-size-base: var(--font-size-base);
+  --font-size-lg: var(--font-size-lg);
+  --font-size-xl: var(--font-size-xl);
+  --font-size-2xl: var(--font-size-2xl);
+  --font-size-3xl: var(--font-size-3xl);
+  --font-size-4xl: var(--font-size-4xl);
+  --font-size-5xl: var(--font-size-5xl);
+  --font-size-6xl: var(--font-size-6xl);
+  --font-size-7xl: var(--font-size-7xl);
+
+  /* --- Border radius --- */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-full: var(--radius-full);
+
+  /* --- Shadows --- */
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-brand: var(--shadow-brand);
+  --shadow-accent: var(--shadow-accent);
+
+  /* --- Animations --- */
+  --animate-fade-in: fadeIn 0.4s ease-out both;
+  --animate-slide-up: slideUp 0.5s ease-out both;
+  --animate-pulse-ring: pulse-ring 1.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgb(233 69 96 / 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 12px rgb(233 69 96 / 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgb(233 69 96 / 0);
+  }
+}
+
+/* ============================================================
+   BASE LAYER
+   ============================================================ */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-white);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Focus-visible ring — keyboard only, not mouse */
+  :focus-visible {
+    outline: 2px solid var(--color-brand-blue);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Remove focus ring for mouse users */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Headings inherit display font */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-text-primary);
+  }
+
+  /* Phone / stat monospace */
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  /* Smooth image rendering */
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Better link defaults */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Selection colors */
+  ::selection {
+    background-color: var(--color-brand-blue);
+    color: var(--color-white);
+  }
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+
+/* Screen-reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Animations */
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out both;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out both;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 1.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+/* Text balance for headings */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Page container — max width with responsive horizontal padding */
+.container-page {
+  max-width: 80rem; /* 1280px / 7xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-page {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-page {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Emergency 24/7 badge pulse */
+.badge-emergency {
+  animation: pulse-ring 1.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  border-radius: var(--radius-full);
+  padding: 0.25rem 0.75rem;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+/* Skip-to-content link (shown on focus) */
+.skip-to-content {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100%);
+  z-index: 9999;
+  background-color: var(--color-brand-blue);
+  color: var(--color-white);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  transition: transform 0.15s ease;
+}
+
+.skip-to-content:focus {
+  transform: translateX(-50%) translateY(0);
+  outline: 3px solid var(--color-accent-warm);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   PROSE — article body typography
+   Used by .prose wrapper on dangerouslySetInnerHTML content
+   ============================================================ */
+@layer components {
+  .prose p {
+    margin-bottom: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .prose h2 {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: #0f3460;
+    font-family: var(--font-display);
+    line-height: 1.3;
+  }
+
+  .prose h3 {
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #1a1a2e;
+    font-family: var(--font-display);
+    line-height: 1.3;
+  }
+
+  .prose ul,
+  .prose ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose ul {
+    list-style-type: disc;
+  }
+
+  .prose ol {
+    list-style-type: decimal;
+  }
+
+  .prose li {
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+  }
+
+  .prose strong {
+    font-weight: 600;
+    color: #1a1a2e;
+  }
+
+  .prose a {
+    color: #0f3460;
+    text-decoration: underline;
+  }
+
+  .prose a:hover {
+    text-decoration: none;
+  }
+
+  .prose em {
+    font-style: italic;
+  }
 }

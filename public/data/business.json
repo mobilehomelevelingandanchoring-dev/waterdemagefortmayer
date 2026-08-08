@@ -1,0 +1,63 @@
+﻿{
+  "name": "Royal Water Damage",
+  "legalName": "Royal Water Damage",
+  "address": {
+    "streetAddress": "[NEEDS CLIENT INPUT — Street Address]",
+    "city": "Fort Myers",
+    "state": "FL",
+    "stateCode": "FL",
+    "zip": "[NEEDS CLIENT INPUT — ZIP]",
+    "country": "US",
+    "countryName": "United States",
+    "full": "[NEEDS CLIENT INPUT — Street Address], Fort Myers, FL [NEEDS CLIENT INPUT — ZIP]"
+  },
+  "phone": "+18647345702",
+  "phoneDisplay": "(864) 734-5702",
+  "email": "info@royalwaterdamagefortmyers.com",
+  "website": "https://royalwaterdamagefortmyers.com",
+  "hours": [
+    { "day": "Sunday", "hours": "Open 24 Hours" },
+    { "day": "Monday", "hours": "Open 24 Hours" },
+    { "day": "Tuesday", "hours": "Open 24 Hours" },
+    { "day": "Wednesday", "hours": "Open 24 Hours" },
+    { "day": "Thursday", "hours": "Open 24 Hours" },
+    { "day": "Friday", "hours": "Open 24 Hours" },
+    { "day": "Saturday", "hours": "Closed" }
+  ],
+  "categories": [
+    "Water Damage Restoration",
+    "Mold Remediation",
+    "Fire Damage Restoration",
+    "Sewage Cleanup",
+    "Storm Damage Restoration"
+  ],
+  "serviceArea": "Fort Myers, FL and nearby areas",
+  "serviceAreaZips": [
+    "33901", "33907", "33908", "33912", "33919", "33966", "33967",
+    "33904", "33909", "33914", "33990", "33991", "33993",
+    "33928",
+    "34134", "34135",
+    "33936", "33971", "33972", "33973", "33974",
+    "34102", "34103", "34104", "34105", "34108", "34109", "34110", "34119"
+  ],
+  "rating": {
+    "value": 5.0,
+    "count": 7,
+    "max": 5
+  },
+  "license": "[NEEDS CLIENT INPUT — License #]",
+  "insurance": "[NEEDS CLIENT INPUT — Insurance #]",
+  "yearFounded": 2020,
+  "priceRange": "$$",
+  "googleMapsURL": "https://maps.google.com/?cid=3490827174890954739",
+  "googleMapsCID": "0x487f08a4a94dfbc1:0x308ddb3c9be57ff3",
+  "socialProfiles": {
+    "facebook": null,
+    "instagram": null,
+    "yelp": null
+  },
+  "geo": {
+    "lat": 26.2736,
+    "lng": -81.8481
+  }
+}

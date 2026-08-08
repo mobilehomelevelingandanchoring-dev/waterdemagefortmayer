@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# screenshots / local dev artefacts
+*.png
+live-site-screenshot.png
+
+# next-sitemap generated files (regenerated on every build)
+public/sitemap.xml
+public/sitemap-0.xml
+public/robots.txt

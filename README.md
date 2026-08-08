@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Royal Water Damage — Fort Myers
 
-## Getting Started
+Production Next.js 16 site for Royal Water Damage, a 24/7 water damage restoration company serving Fort Myers, FL and Southwest Florida.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** — App Router, TypeScript, React Server Components
+- **Tailwind CSS v4** — custom design tokens
+- **Radix UI** — accessible accordion, dialog, navigation menu
+- **react-hook-form + zod** — lead form with inline validation
+- **next-sitemap** — sitemap.xml + robots.txt on postbuild
+- **lucide-react** — icons
+
+## Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build & Deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build   # compiles + generates sitemap + robots.txt
+```
 
-## Learn More
+### Vercel Deployment
 
-To learn more about Next.js, take a look at the following resources:
+1. Import this repo at [vercel.com/new](https://vercel.com/new)
+2. Add environment variables (see `.env.local` for all keys):
+   - `NEXT_PUBLIC_GTM_ID` — Google Tag Manager container ID
+   - `NEXT_PUBLIC_GA4_ID` — GA4 Measurement ID (skip if using GTM)
+   - `NEXT_PUBLIC_CALLRAIL_ID` — CallRail account ID for DNI
+3. Connect domain `royalwaterdamagefortmyers.com`
+4. Deploy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Site Architecture — 76 Static Pages
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Route | Type | Pages |
+|---|---|---|
+| `/` | Static | 1 |
+| `/services/[slug]` | SSG | 7 |
+| `/locations/[slug]` | SSG | 6 |
+| `/services/[slug]/[city]` | SSG | 42 |
+| `/blog/[slug]` | SSG | 3 |
+| Static pages | Static | 9 |
+| `/api/contact` | Dynamic | 1 |
 
-## Deploy on Vercel
+## Updating Content
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+All content lives in typed data files — edit these, never individual pages:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| File | Controls |
+|---|---|
+| `src/data/business.ts` | NAP, hours, phone numbers, geo |
+| `src/data/services.ts` | All 7 service pages |
+| `src/data/locations.ts` | All 6 location pages |
+| `src/data/blog.ts` | All blog posts |
+| `public/data/business.json` | Machine-readable citation file |
+
+## Phone Number Strategy (Pay-Per-Call)
+
+| Number | Purpose | Where Used |
+|---|---|---|
+| **(864) 734-5702** | Pay-per-call tracking | All visible CTAs, header, mobile bar |
+| `BUSINESS.phoneGBP` | GBP/NAP schema consistency | JSON-LD `telephone` field only |
+
+**Dynamic Number Insertion (DNI):** Set `NEXT_PUBLIC_CALLRAIL_ID` + update `swap.js` URL in `src/components/analytics/GTMSlot.tsx`. Organic callers see a local (239) pool number; paid callers keep (864).
+
+## Before Launch
+
+Search for all placeholders:
+```bash
+grep -r "NEEDS CLIENT INPUT" src/ public/
+```
+
+Key items needed from client:
+- Street address + ZIP
+- Logo file (replace SVG wordmark in Header)
+- Real photos (hero, team, job site)
+- 7 real Google review texts
+- Contractor license # and insurance #
+- Google Search Console verification code
+- OG image `public/og-image.jpg` (1200×630px)
+- GTM / GA4 / CallRail IDs → Vercel environment variables
