@@ -150,11 +150,8 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
   },
 
-  // Search console verification — update with real code before launch
   verification: {
-    google: "[NEEDS CLIENT INPUT — Google Search Console verification code]",
-    // yandex: "...",
-    // bing: "...",
+    google: "ldO3yF-AaEozrYbaufboDRzmTho3c8YVgDGFegyuhhc",
   },
 
   alternates: {
