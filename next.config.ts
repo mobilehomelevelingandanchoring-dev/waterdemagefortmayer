@@ -30,14 +30,14 @@ const securityHeaders = [
       // Next.js needs unsafe-inline for styles; nonce-based CSP is ideal but complex in Next.js
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com data:",
-      // Scripts — self + Next.js inline scripts
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+      // Scripts — self + Next.js inline scripts + Cloudflare/GTM/CallRail
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com https://www.googletagmanager.com https://cdn.callrail.com",
       // Images — self + data URIs + Google (maps)
       `img-src 'self' data: blob: https://maps.googleapis.com https://maps.gstatic.com ${SITE_URL}`,
       // Frames — allow Google Maps embed
       "frame-src 'self' https://www.google.com https://maps.google.com",
-      // Connect — API calls
-      "connect-src 'self' https://vitals.vercel-insights.com",
+      // Connect — API calls + Cloudflare analytics
+      "connect-src 'self' https://vitals.vercel-insights.com https://cloudflareinsights.com",
       // Form actions — self only
       "form-action 'self'",
       // Base URI — prevent base tag injection
