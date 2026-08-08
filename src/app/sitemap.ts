@@ -58,7 +58,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Blog posts — use real published/updated dates for crawl freshness signals
   const blogPages: MetadataRoute.Sitemap = BLOG_POSTS.map((p) => ({
     url: `${BASE_URL}/blog/${p.slug}`,
-    lastModified: p.updatedDate ?? p.publishedDate,
+    lastModified: p.updatedDate ?? p.publishDate,
     changeFrequency: "monthly" as const,
     priority: 0.80,
   }));
